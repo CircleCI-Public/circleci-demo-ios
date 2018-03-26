@@ -5,7 +5,7 @@ jobs:
       xcode: "9.0"
     working_directory: /Users/distiller/project
     environment:
-      FL_OUTPUT_DIR: /Users/distiller/project/output
+      FL_OUTPUT_DIR: output
       FASTLANE_LANE: test
     shell: /bin/bash --login -o pipefail
     steps:
@@ -24,7 +24,7 @@ jobs:
       xcode: "9.0"
     working_directory: /Users/distiller/project
     environment:
-      FL_OUTPUT_DIR: /Users/distiller/project/output
+      FL_OUTPUT_DIR: output
       FASTLANE_LANE: adhoc
     shell: /bin/bash --login -o pipefail
     steps:
@@ -34,14 +34,14 @@ jobs:
           name: Fastlane
           command: bundle exec fastlane $FASTLANE_LANE
       - store_artifacts:
-          path: /Users/distiller/project/output/Game.ipa
+          path: output/Game.ipa
 
   beta:
     macos:
       xcode: "9.0"
     working_directory: /Users/distiller/project
     environment:
-      FL_OUTPUT_DIR: /Users/distiller/project/output
+      FL_OUTPUT_DIR: output
       FASTLANE_LANE: beta
     shell: /bin/bash --login -o pipefail
     steps:
@@ -51,7 +51,7 @@ jobs:
           name: Fastlane
           command: bundle exec fastlane $FASTLANE_LANE
       - store_artifacts:
-          path: /Users/distiller/project/output/Game.ipa
+          path: output/Game.ipa
 
 workflows:
   version: 2
