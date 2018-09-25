@@ -1,0 +1,5 @@
+language: swift
+osx_image: xcode10
+xcode_project: Game.xcodeproj
+xcode_scheme: Game
+xcode_destination: platform=iOS Simulator,OS=11.3,name=iPhone X
