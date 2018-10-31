@@ -35,4 +35,5 @@ Carthage/Build
 
 # Fastlane output
 fastlane/report.xml
-fastlane/test_output/
+fastlane/test_output
+output
