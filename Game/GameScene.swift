@@ -12,7 +12,7 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         /* Setup your scene here */
         let myLabel = SKLabelNode(fontNamed:"Chalkduster")
-        myLabel.text = "Hello, World!";
+        myLabelx.text = "Hello, World!";
         myLabel.fontSize = 45;
         myLabel.position = CGPoint(x:self.frame.midX, y:self.frame.midY);
         myLabel.isAccessibilityElement = true
