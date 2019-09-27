@@ -7,7 +7,20 @@ platform :ios do
 
   desc "Runs all the tests"
   lane :test do
-    scan(include_simulator_logs: false)
+    scan(
+      include_simulator_logs: false,
+      code_coverage: true,
+      clean: true
+    )
+
+    slather(
+      proj: "Game.xcodeproj",
+      scheme: "Game",
+      source_directory: "../Game",
+      output_directory: "./fastlane/test_output/slather",
+      cobertura_xml: true
+    )
+
     snapshot
   end
 
