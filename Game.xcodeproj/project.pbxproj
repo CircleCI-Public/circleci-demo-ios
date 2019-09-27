@@ -203,20 +203,20 @@
 					49EC45451BF4D532000A8470 = {
 						CreatedOnToolsVersion = 7.1.1;
 						DevelopmentTeam = GL92ZZ6423;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1100;
 						ProvisioningStyle = Manual;
 					};
 					49EC455D1BF4D533000A8470 = {
 						CreatedOnToolsVersion = 7.1.1;
 						DevelopmentTeam = GL92ZZ6423;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1100;
 						ProvisioningStyle = Manual;
 						TestTargetID = 49EC45451BF4D532000A8470;
 					};
 					49EC45681BF4D533000A8470 = {
 						CreatedOnToolsVersion = 7.1.1;
 						DevelopmentTeam = GL92ZZ6423;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1100;
 						ProvisioningStyle = Manual;
 						TestTargetID = 49EC45451BF4D532000A8470;
 					};
@@ -227,6 +227,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -455,7 +456,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.circleci.ios-game";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -475,7 +476,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "f63324d3-c12a-43fe-8a6c-edc0c0c5f159";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -490,7 +491,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.circleci.GameTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Game.app/Game";
 			};
 			name = Debug;
@@ -504,7 +505,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.circleci.GameTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Game.app/Game";
 			};
 			name = Release;
@@ -518,7 +519,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.circleci.GameUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = Game;
 				USES_XCTRUNNER = YES;
 			};
@@ -532,7 +533,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.circleci.GameUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = Game;
 				USES_XCTRUNNER = YES;
 			};
