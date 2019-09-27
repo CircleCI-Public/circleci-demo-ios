@@ -37,3 +37,7 @@ Carthage/Build
 fastlane/report.xml
 fastlane/test_output
 output
+
+# Gem
+vendor
+.bundle
