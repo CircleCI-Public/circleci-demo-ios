@@ -37,7 +37,7 @@ commands:
           key: << parameters.cache_key >>-{{ checksum "Gemfile.lock" }}
       - run:
           name: 'Install gems with Bundler'
-          command: bundle install --path << parameters.bundle_path >>
+          command: bundle install --path << parameters.bundle_path >> --clean
       - save_cache:
           key: << parameters.cache_key >>-{{ checksum "Gemfile.lock" }}
           paths:
