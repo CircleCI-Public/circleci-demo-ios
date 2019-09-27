@@ -1,4 +1,6 @@
 version: 2.1
+orbs:
+  codecov: codecov/codecov@1.0.5
 
 executors:
   macos:
@@ -15,6 +17,7 @@ executors:
       LC_ALL: en_US.UTF-8
       LANG: en_US.UTF-8
       FL_OUTPUT_DIR: output
+      FL_SLATHER_OUTPUT_DIRECTORY: output/slather
     working_directory: /Users/distiller/project
 
 commands:
@@ -71,6 +74,9 @@ jobs:
           path: output
       - store_test_results:
           path: output/scan
+      - codecov/upload:
+          file: output/slather/cobertura.xml
+
   generate-ipa:
     executor: macos
     parameters:
@@ -101,6 +107,7 @@ workflows:
               only: development
           requires:
             - test
+
       #- beta:
           #filters:
             #branches:
