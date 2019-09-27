@@ -17,7 +17,6 @@ platform :ios do
       proj: "Game.xcodeproj",
       scheme: "Game",
       source_directory: "../Game",
-      output_directory: "./fastlane/test_output/slather",
       cobertura_xml: true
     )
 
