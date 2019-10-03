@@ -47,6 +47,10 @@ commands:
   load-cache:
     description: Load cached RubyGems
     parameters:
+      bundle_path:
+        description: 'the bundle packages to store'
+        default: 'vendor/bundle'
+        type: string
       cache_key:
         description: 'The cache key to use'
         default: gems-v1
@@ -54,7 +58,9 @@ commands:
     steps:
       - restore_cache:
           key: << parameters.cache_key >>-{{ checksum "Gemfile.lock" }}
-
+      - run:
+          name: 'Install gems with Bundler'
+          command: bundle install --path << parameters.bundle_path >> --clean
 
 jobs:
   test:
