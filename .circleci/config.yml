@@ -1,55 +1,101 @@
-version: 2
-jobs:
-  build-and-test:
+version: 2.1
+orbs:
+  codecov: codecov/codecov@1.0.5
+
+executors:
+  macos:
     macos:
-      xcode: "10.2.0"
-    working_directory: /Users/distiller/project
+      xcode: << parameters.xcode_version >>
+    parameters:
+      xcode_version:
+        description: 'Xcode version'
+        default: '11.1.0'
+        type: string
     environment:
+      XCODE_PATH: /Applications/Xcode.app
+      FASTLANE_SKIP_UPDATE_CHECK: 1
+      LC_ALL: en_US.UTF-8
+      LANG: en_US.UTF-8
       FL_OUTPUT_DIR: output
-      FASTLANE_LANE: test
+      FL_SLATHER_OUTPUT_DIRECTORY: output/slather
+    working_directory: /Users/distiller/project
     shell: /bin/bash --login -o pipefail
+
+commands:
+  bundle-install:
+    description: Install gems with Bundler
+    parameters:
+      bundle_path:
+        description: 'the bundle packages to store'
+        default: 'vendor/bundle'
+        type: string
+      cache_key:
+        description: 'The cache key to use'
+        default: gems-v1
+        type: string
+    steps:
+      - restore_cache:
+          key: << parameters.cache_key >>-{{ checksum "Gemfile.lock" }}
+      - run:
+          name: 'Install gems with Bundler'
+          command: bundle install --path << parameters.bundle_path >> --clean
+      - save_cache:
+          key: << parameters.cache_key >>-{{ checksum "Gemfile.lock" }}
+          paths:
+            - << parameters.bundle_path >>
+
+  load-cache:
+    description: Load cached RubyGems
+    parameters:
+      bundle_path:
+        description: 'the bundle packages to store'
+        default: 'vendor/bundle'
+        type: string
+      cache_key:
+        description: 'The cache key to use'
+        default: gems-v1
+        type: string
+    steps:
+      - restore_cache:
+          key: << parameters.cache_key >>-{{ checksum "Gemfile.lock" }}
+      - run:
+          name: 'Install gems with Bundler'
+          command: bundle install --path << parameters.bundle_path >> --clean
+
+jobs:
+  test:
+    executor: macos
+    parameters:
+      fastlane_lane:
+        default: 'test'
+        description: 'lane to run'
+        type: string
     steps:
       - checkout
-      - run: bundle install
+      - bundle-install
       - run:
           name: Fastlane
-          command: bundle exec fastlane $FASTLANE_LANE
+          command: bundle exec fastlane << parameters.fastlane_lane >>
       - store_artifacts:
           path: output
       - store_test_results:
           path: output/scan
+      - codecov/upload:
+          file: output/slather/cobertura.xml
 
-  adhoc:
-    macos:
-      xcode: "10.2.0"
-    working_directory: /Users/distiller/project
-    environment:
-      FL_OUTPUT_DIR: output
-      FASTLANE_LANE: adhoc
-    shell: /bin/bash --login -o pipefail
+  generate-ipa:
+    executor: macos
+    parameters:
+      fastlane_lane:
+        default: 'adhoc'
+        description: 'lane to run'
+        type: string
     steps:
       - checkout
-      - run: bundle install
+      - load-cache
       - run:
           name: Fastlane
-          command: bundle exec fastlane $FASTLANE_LANE
-      - store_artifacts:
-          path: output/Game.ipa
-
-  beta:
-    macos:
-      xcode: "10.2.0"
-    working_directory: /Users/distiller/project
-    environment:
-      FL_OUTPUT_DIR: output
-      FASTLANE_LANE: beta
-    shell: /bin/bash --login -o pipefail
-    steps:
-      - checkout
-      - run: bundle install
-      - run:
-          name: Fastlane
-          command: bundle exec fastlane $FASTLANE_LANE
+          command: bundle exec fastlane << parameters.fastlane_lane >>
       - store_artifacts:
           path: output/Game.ipa
 
@@ -57,13 +103,15 @@ workflows:
   version: 2
   build-test-adhoc:
     jobs:
-      - build-and-test
-      - adhoc:
+      - test:
+          fastlane_lane: test
+      - generate-ipa:
+          fastlane_lane: adhoc
           filters:
             branches:
               only: development
           requires:
-            - build-and-test
+            - test
       #- beta:
           #filters:
             #branches:

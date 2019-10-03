@@ -1,6 +1,7 @@
 # ios-game
 
-[![CircleCI](https://circleci.com/gh/CircleCI-Public/circleci-demo-ios/tree/master.svg?style=svg)](https://circleci.com/gh/CircleCI-Public/circleci-demo-ios/tree/master)
+[![CircleCI](https://circleci.com/gh/CircleCI-Public/circleci-demo-ios/tree/master.svg?style=svg)](https://circleci.com/gh/CircleCI-Public/circleci-demo-ios/tree/2.1-orbs-config)
+[![codecov](https://codecov.io/gh/CircleCI-Public/circleci-demo-ios/branch/2.1-orbs-config/graph/badge.svg)](https://codecov.io/gh/CircleCI-Public/circleci-demo-ios)
 
 ## Setup
 
