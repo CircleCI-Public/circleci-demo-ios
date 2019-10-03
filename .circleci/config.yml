@@ -9,7 +9,7 @@ executors:
     parameters:
       xcode_version:
         description: 'Xcode version'
-        default: '11.0.0'
+        default: '11.1.0'
         type: string
     environment:
       XCODE_PATH: /Applications/Xcode.app
@@ -19,6 +19,7 @@ executors:
       FL_OUTPUT_DIR: output
       FL_SLATHER_OUTPUT_DIRECTORY: output/slather
     working_directory: /Users/distiller/project
+    shell: /bin/bash --login -o pipefail
 
 commands:
   bundle-install:
@@ -63,7 +64,6 @@ jobs:
         default: 'test'
         description: 'lane to run'
         type: string
-    shell: /bin/bash --login -o pipefail
     steps:
       - checkout
       - bundle-install
@@ -84,7 +84,6 @@ jobs:
         default: 'adhoc'
         description: 'lane to run'
         type: string
-    shell: /bin/bash --login -o pipefail
     steps:
       - checkout
       - load-cache
@@ -107,7 +106,6 @@ workflows:
               only: development
           requires:
             - test
-
       #- beta:
           #filters:
             #branches:
