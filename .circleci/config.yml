@@ -11,7 +11,6 @@ jobs:
     steps:
       - checkout
       - run: bundle install
-      - run: bundle update fastlane
       - run:
           name: Fastlane
           command: bundle exec fastlane $FASTLANE_LANE
