@@ -2,7 +2,7 @@ version: 2
 jobs:
   build-and-test:
     macos:
-      xcode: "10.2.0"
+      xcode: "11.3.0"
     working_directory: /Users/distiller/project
     environment:
       FL_OUTPUT_DIR: output
@@ -21,7 +21,7 @@ jobs:
 
   adhoc:
     macos:
-      xcode: "10.2.0"
+      xcode: "11.3.0"
     working_directory: /Users/distiller/project
     environment:
       FL_OUTPUT_DIR: output
